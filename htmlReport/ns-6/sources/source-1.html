@@ -1,0 +1,185 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PetService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">zalex14.shelter.service.pet</a>
+</div>
+
+<h1>Coverage Summary for Class: PetService (zalex14.shelter.service.pet)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PetService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package zalex14.shelter.service.pet;
+&nbsp;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import zalex14.shelter.entity.pet.Pet;
+&nbsp;import zalex14.shelter.exception.NotFoundException;
+&nbsp;import zalex14.shelter.repository.pet.PetRepository;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;/**
+&nbsp; * Service for pets
+&nbsp; *
+&nbsp; * @see Pet (Long id; String nickName; int age; boolean isSickness; String description; boolean breed;
+&nbsp; * boolean isAvailable; Integer duration;  Pet.Schema schema;)
+&nbsp; * @see PetRepository
+&nbsp; */
+&nbsp;@Service
+<b class="fc">&nbsp;@RequiredArgsConstructor</b>
+&nbsp;public class PetService {
+&nbsp;    private final PetRepository repository;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creat pet
+&nbsp;     *
+&nbsp;     * @param pet obj
+&nbsp;     */
+&nbsp;
+&nbsp;    public Pet create(Pet pet) {
+<b class="fc">&nbsp;        return repository.save(pet);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Read all pets
+&nbsp;     *
+&nbsp;     * @return pet&#39;s list
+&nbsp;     */
+&nbsp;    public List&lt;Pet&gt; readAll() {
+<b class="fc">&nbsp;        return this.repository.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Read pet by id
+&nbsp;     *
+&nbsp;     * @return pet obj
+&nbsp;     * @throws NotFoundException Calls method NotFoundException(message)
+&nbsp;     */
+&nbsp;    public Pet readById(Long id) {
+<b class="fc">&nbsp;        return repository.findById(id).orElseThrow(() -&gt; new NotFoundException(&quot; ѕитомец с id &quot; + id + &quot; не найден&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update of pet&#39;s data
+&nbsp;     *
+&nbsp;     * @param id  pet&#39;s id
+&nbsp;     * @param pet obj
+&nbsp;     * @throws NotFoundException Calls method NotFoundException(message)
+&nbsp;     */
+&nbsp;    public Pet update(Long id, Pet pet) {
+<b class="fc">&nbsp;        Pet updated = repository.findById(id).orElseThrow(() -&gt; new NotFoundException(&quot; ѕитомец &quot; +</b>
+&nbsp;                &quot;с id &quot; + id + &quot; не найден&quot;));
+<b class="fc">&nbsp;        updated.setNickName(pet.getNickName());</b>
+<b class="fc">&nbsp;        updated.setAge(pet.getAge());</b>
+<b class="fc">&nbsp;        updated.setSickness(pet.isSickness());</b>
+<b class="fc">&nbsp;        updated.setDescription(pet.getDescription());</b>
+<b class="fc">&nbsp;        updated.setBreed(pet.isBreed());</b>
+<b class="fc">&nbsp;        updated.setAvailable(pet.isAvailable());</b>
+<b class="fc">&nbsp;        updated.setDuration(pet.getDuration());</b>
+<b class="fc">&nbsp;        updated.setSchema(pet.getSchema());</b>
+<b class="fc">&nbsp;        return repository.save(pet);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Delete of pet by id
+&nbsp;     *
+&nbsp;     * @param id pet&#39;s id
+&nbsp;     */
+&nbsp;    public void delete(Long id) {
+<b class="fc">&nbsp;        Optional.of(repository.findById(id)).ifPresent(pet -&gt; repository.deleteById(id));</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-11 19:11</div>
+</div>
+</body>
+</html>

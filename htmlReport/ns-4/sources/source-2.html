@@ -1,0 +1,186 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ShelterController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">zalex14.shelter.controller.shelter</a>
+</div>
+
+<h1>Coverage Summary for Class: ShelterController (zalex14.shelter.controller.shelter)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ShelterController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    73,3%
+  </span>
+  <span class="absValue">
+    (11/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package zalex14.shelter.controller.shelter;
+&nbsp;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;import zalex14.shelter.entity.shelter.Shelter;
+&nbsp;import zalex14.shelter.service.shelter.ShelterService;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;/**
+&nbsp; * a REST controller for shelter  HTTP requests
+&nbsp; *
+&nbsp; */
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/shelter&quot;)
+<b class="fc">&nbsp;@AllArgsConstructor</b>
+&nbsp;public class ShelterController {
+&nbsp;    private final ShelterService service;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create new shelter
+&nbsp;     *
+&nbsp;     * @param shelter obj
+&nbsp;     */
+&nbsp;    @PostMapping
+&nbsp;    public ResponseEntity&lt;Shelter&gt; create(@RequestBody Shelter shelter) {
+<b class="fc">&nbsp;        return service.create(shelter) != null</b>
+<b class="fc">&nbsp;                ? ResponseEntity.ok(service.create(shelter))</b>
+<b class="nc">&nbsp;                : ResponseEntity.notFound().build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Read all shelters
+&nbsp;     *
+&nbsp;     * @return a list of shelters
+&nbsp;     */
+&nbsp;    @GetMapping
+&nbsp;    public ResponseEntity&lt;List&lt;Shelter&gt;&gt; readAll() {
+<b class="fc">&nbsp;        return service.readAll() != null</b>
+<b class="fc">&nbsp;                ? ResponseEntity.ok(service.readAll())</b>
+<b class="nc">&nbsp;                : ResponseEntity.notFound().build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Read shelter by id
+&nbsp;     *
+&nbsp;     * @param id        The shelter&#39;s id
+&nbsp;     * @return shelter  The shelter obj
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;Shelter&gt; readById(@PathVariable(&quot;id&quot;) Long id) {
+<b class="fc">&nbsp;        return service.readById(id) != null</b>
+<b class="fc">&nbsp;                ? ResponseEntity.ok(service.readById(id))</b>
+<b class="nc">&nbsp;                : ResponseEntity.notFound().build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The shelter&#39;s update
+&nbsp;     *
+&nbsp;     * @param id      The shelter&#39;s id
+&nbsp;     * @param shelter The shelter obj
+&nbsp;     */
+&nbsp;    @PatchMapping(&quot;/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;Shelter&gt; update(@PathVariable(&quot;id&quot;) Long id, @RequestBody Shelter shelter) {
+<b class="fc">&nbsp;        return service.update(id, shelter) != null</b>
+<b class="fc">&nbsp;                ? ResponseEntity.ok(service.update(id, shelter))</b>
+<b class="nc">&nbsp;                : ResponseEntity.notFound().build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The shelter delete
+&nbsp;     *
+&nbsp;     * @param id The shelter&#39;s id
+&nbsp;     */
+&nbsp;    @DeleteMapping(&quot;/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;String&gt; delete(@PathVariable(&quot;id&quot;) Long id) {
+<b class="fc">&nbsp;        service.delete(id);</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(id + &quot; deleted&quot;, HttpStatus.OK);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-11 19:11</div>
+</div>
+</body>
+</html>

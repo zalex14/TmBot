@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ShelterService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">zalex14.shelter.service.shelter</a>
+</div>
+
+<h1>Coverage Summary for Class: ShelterService (zalex14.shelter.service.shelter)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ShelterService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (25/25)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package zalex14.shelter.service.shelter;
+&nbsp;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import zalex14.shelter.entity.shelter.Shelter;
+&nbsp;import zalex14.shelter.exception.NotFoundException;
+&nbsp;import zalex14.shelter.repository.shelter.ShelterRepository;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;/**
+&nbsp; * Service Shelter
+&nbsp; * Service for managing the shelter information
+&nbsp; *
+&nbsp; * @see Shelter ( Long id; Long telegramId; String title; String information; String address; Float latitude;
+&nbsp; * Float longitude; String phone; String workingHours;  String territoryAdmission; String territoryStaying;
+&nbsp; * String securityContacts; String petAcquaintance; String documentList; String travelRecommendation;
+&nbsp; * String childArranging; String adultArranging; String sickArrangement; String handlerAdvice; String refusalReason;)
+&nbsp; * @see ShelterRepository
+&nbsp; */
+&nbsp;@Service
+<b class="fc">&nbsp;@RequiredArgsConstructor</b>
+&nbsp;public class ShelterService {
+&nbsp;    private final ShelterRepository repository;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create shelter
+&nbsp;     *
+&nbsp;     * @param shelter The new shelter
+&nbsp;     */
+&nbsp;    public Shelter create(Shelter shelter) {
+<b class="fc">&nbsp;        return repository.save(shelter);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Read all shelters
+&nbsp;     *
+&nbsp;     * @return The list of shelters
+&nbsp;     */
+&nbsp;    public List&lt;Shelter&gt; readAll() {
+<b class="fc">&nbsp;        return repository.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Read shelter by id
+&nbsp;     *
+&nbsp;     * @param id the shelter&#39;s id
+&nbsp;     * @return The shelter obj
+&nbsp;     * @throws NotFoundException Calls method NotFoundException(message)
+&nbsp;     */
+&nbsp;    public Shelter readById(Long id) {
+<b class="fc">&nbsp;        return repository.findById(id).orElseThrow(() -&gt; new NotFoundException(&quot; Приют с id &quot; + id + &quot; не найден&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update the shelter by id
+&nbsp;     *
+&nbsp;     * @param id the shelter&#39;s id
+&nbsp;     * @throws NotFoundException Calls method NotFoundException(message)
+&nbsp;     */
+&nbsp;    public Shelter update(Long id, Shelter shelter) {
+<b class="fc">&nbsp;        Shelter updated = repository.findById(id).orElseThrow(() -&gt; new NotFoundException(&quot; Приют c id &quot; + id</b>
+&nbsp;                + &quot; не найден&quot;));
+<b class="fc">&nbsp;        updated.setTitle(shelter.getTitle());</b>
+<b class="fc">&nbsp;        updated.setInformation(shelter.getInformation());</b>
+<b class="fc">&nbsp;        updated.setAddress(shelter.getAddress());</b>
+<b class="fc">&nbsp;        updated.setLatitude(shelter.getLatitude());</b>
+<b class="fc">&nbsp;        updated.setLongitude(shelter.getLongitude());</b>
+<b class="fc">&nbsp;        updated.setPhone(shelter.getPhone());</b>
+<b class="fc">&nbsp;        updated.setWorkingHours(shelter.getWorkingHours());</b>
+<b class="fc">&nbsp;        updated.setTerritoryAdmission(shelter.getTerritoryAdmission());</b>
+<b class="fc">&nbsp;        updated.setTerritoryStaying(shelter.getTerritoryStaying());</b>
+<b class="fc">&nbsp;        updated.setSecurityContacts(shelter.getSecurityContacts());</b>
+<b class="fc">&nbsp;        updated.setPetAcquaintance(shelter.getPetAcquaintance());</b>
+<b class="fc">&nbsp;        updated.setDocumentList(shelter.getDocumentList());</b>
+<b class="fc">&nbsp;        updated.setTravelRecommendation(shelter.getTravelRecommendation());</b>
+<b class="fc">&nbsp;        updated.setChildArranging(shelter.getChildArranging());</b>
+<b class="fc">&nbsp;        updated.setAdultArranging(shelter.getAdultArranging());</b>
+<b class="fc">&nbsp;        updated.setSickArrangement(shelter.getSickArrangement());</b>
+<b class="fc">&nbsp;        updated.setHandlerAdvice(shelter.getHandlerAdvice());</b>
+<b class="fc">&nbsp;        updated.setRefusalReason(shelter.getRefusalReason());</b>
+<b class="fc">&nbsp;        return repository.save(updated);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Delete the shelter by id
+&nbsp;     *
+&nbsp;     * @param id the shelter&#39;s id
+&nbsp;     */
+&nbsp;    public void delete(Long id) {
+<b class="fc">&nbsp;        Optional.of(repository.findById(id)).ifPresent(shelter -&gt; repository.deleteById(id));</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-11 19:11</div>
+</div>
+</body>
+</html>
